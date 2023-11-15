@@ -1,0 +1,42 @@
+website kpu pemilihan umum
+
+database model:{
+    user: [
+        {
+            userId:
+            username:
+            password: 
+            hasVote: candidateId
+        }
+    ]
+    candidate: [
+        {
+            candidateId:
+            username:
+            voteCount:
+        }
+    ]
+}
+
+-> /user
+    -> show current user
+    /user/login
+        -> buat login
+    /user/create
+        -> create account
+    /user/delete
+        -> delete user
+
+-> candidate
+    -> show all candidate
+    /candidate/create
+    /candidate/delete
+
+-> vote
+    -> show all candidate
+    /choose:candidate
+        -> choose
+            {
+                user:
+                candidate:
+            }
