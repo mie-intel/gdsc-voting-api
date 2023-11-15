@@ -16,21 +16,20 @@ const connectDB = async () => {
   try {
     const conn = await mongoose.connect(mongooseString);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
+    const database = mongoose.connection;
+
+    database.on("error", (error) => {
+      console.log(error);
+    });
+
+    database.once("connected", () => {
+      console.log("Database connected");
+    });
   } catch (error) {
     console.log(error);
     process.exit(1);
   }
 };
-
-const database = mongoose.connection;
-
-database.on("error", (error) => {
-  console.log(error);
-});
-
-database.once("connected", () => {
-  console.log("Database connected");
-});
 
 connectDB().then(() => {
   app.listen(port, () => {
