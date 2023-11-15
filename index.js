@@ -13,16 +13,18 @@ database.on("error", (error) => {
   console.log(error);
 });
 
-database.once("connected", () => {
-  console.log("Database connected");
-});
+database
+  .once("connected", () => {
+    console.log("Database connected");
+  })
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`App run in server ${port}`);
+    });
+  });
 
 const routes = require("./routes/routes.js");
 const app = express();
 
 app.use(express.json());
 app.use("/api", routes);
-
-app.listen(port, () => {
-  console.log(`App run in server ${port}`);
-});
