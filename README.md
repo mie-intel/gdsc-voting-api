@@ -13,7 +13,7 @@ You can use the deployment here
 ## API endpoints structure
 
 ```
-/       # API Homepage
+/                   # Show all user available account
     /user
         /create     # create a / some user account
         /delete     # delete an user account
