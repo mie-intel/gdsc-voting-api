@@ -60,6 +60,14 @@ routes.delete("/user/delete", async (req, res) => {
 // candidate
 routes.post("/candidate/create", async (req, res) => {
   console.log(req.body);
+  const candidateExist = await candidateModel.findOne({
+    candidateName: req.body.candidateName,
+  });
+
+  if (candidateExist) {
+    return res.send("Candidate has already existed");
+  }
+
   const data = new candidateModel({
     candidateName: req.body.candidateName,
     voteCount: 0,
@@ -164,7 +172,7 @@ routes.delete("/deleteAll", async (req, res) => {
   try {
     await userModel.deleteMany({});
     await candidateModel.deleteMany({});
-    return res.send("Anjay ke reset semua");
+    return res.send("Anjay ke delete semua");
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }

@@ -47,7 +47,7 @@ This API use 2 different data model. These are:
    {
     username    :   <a string of username>
     password    :   <a string of password>
-    hasVote     :    <a string of which candidate is voted by the user>
+    hasVote     :   <a string of which candidate is voted by the user>
    }
    ```
 
@@ -72,19 +72,18 @@ This feature will create a / some new account. It has the following request form
     {
         method: POST
         endpoint: /user/create
-        body:{
-            [
-                {
-                    'username': 'user1'
-                    'password': 'pass1'
-                },
-                {
-                    'username': 'user2'
-                    'password': 'pass2'
-                },
-                // etc
-            ]
-        }
+        body:
+        [
+            {
+                'username': 'user1'
+                'password': 'pass1'
+            },
+            {
+                'username': 'user2'
+                'password': 'pass2'
+            },
+            // etc
+        ]
     }
 ```
 
@@ -120,9 +119,7 @@ This feature will delete the specified user account. It has the following reques
         method: DELETE
         endpoint: /user/delete
         body:{
-            {
-                "username": "user1"
-            }
+            "username": "user1"
         }
     }
 ```
@@ -172,9 +169,7 @@ This feature wil create a new candidate account. It has the following formats.
         method: POST
         endpoint: /candidate/create
         body:{
-            {
-                "candidateName": "candidate1"
-            }
+            "candidateName": "candidate1"
         }
     }
 ```
@@ -192,9 +187,64 @@ It will create a new candidate account with `0` vote count. This is the example 
 
 #### Delete a candidate
 
+This feature will delete a candidate account. It has the following request formats.
+
+```
+    {
+        method: DELETE
+        endpoint: /candidate/delete
+        body:{
+            candidateName: "candidate1"
+        }
+    }
+```
+
+This will delete the `candidate1` account.
+
 #### Make a vote
 
+This feature will make a vote. It takes `username` and `candidateName` parameter to make a vote. The vote will fail if `username` has already made a vote.
+
+This feature has the following format.
+
+```
+    {
+        method: PATCH
+        endpoint: /candidate/vote
+        body:{
+            username: "user1"
+            candidateName: "candidate1"
+        }
+    }
+```
+
+This will set `user1`'s hasVote into `candidate1` and also increase `candidate1`'s voteCount 1. If `user1` has already vote before, then this feature will reject the request.
+
 #### Show all candidates data
+
+This feature will show all registered candidates data. It has the following formats
+
+```
+    {
+        method: GET
+        endpoint: /candidate/showAll
+    }
+```
+
+This will return a json data consist of every registered users data. This is the example of the json data.
+
+```
+    {
+        "candidate": [
+            {
+                "_id": "6554c8909a6cc096af66a5da",
+                "candidateName": "candidate1",
+                "voteCount": 0,
+                "__v": 0
+            }
+        ]
+    }
+```
 
 #### Show all users and candidates data
 
