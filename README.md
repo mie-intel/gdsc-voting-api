@@ -248,6 +248,70 @@ This will return a json data consist of every registered users data. This is the
 
 #### Show all users and candidates data
 
+This feature will show all registered users and candidates account. It has the following request formats.
+
+```
+    {
+        method: GET
+        endpoint: /showAll
+    }
+```
+
+This is one of the respond's example.
+
+```
+    {
+        "candidate": [
+            {
+                "_id": "6555bb458987a42f6a3ded3d",
+                "candidateName": "candidate1",
+                "voteCount": 0,
+                "__v": 0
+            },
+            {
+                "_id": "6555bb558987a42f6a3ded41",
+                "candidateName": "candidate2",
+                "voteCount": 0,
+                "__v": 0
+            }
+        ],
+        "user": [
+            {
+                "_id": "6555bcd80dc60b880f5e8575",
+                "username": "user1",
+                "password": "user1",
+                "hasVote": "",
+                "__v": 0
+            },
+            {
+                "_id": "6555bcd90dc60b880f5e8578",
+                "username": "user2",
+                "password": "pass2",
+                "hasVote": "",
+                "__v": 0
+            }
+        ]
+    }
+```
+
 #### Reset all users and candidates data
 
+This feature will reset all votes. Every `voteCount` variabel will be set into `0` and every `hasVote` variabel will be set into `""`. This feature has the following request format.
+
+```
+    {
+        method: PATCH
+        endpoint: /candidate/resetAll
+    }
+```
+
 #### Delete all users and candidates account
+
+This feature will delete all users and candidates account. It has the following request format.
+
+```
+    {
+        method: DELETE
+        endpoint: /candidate/deleteAll
+    }
+```
