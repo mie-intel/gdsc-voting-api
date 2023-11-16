@@ -315,3 +315,7 @@ This feature will delete all users and candidates account. It has the following 
         endpoint: /candidate/deleteAll
     }
 ```
+
+## Last but not least
+
+Made with ❤️ by Polikarpus Arya
