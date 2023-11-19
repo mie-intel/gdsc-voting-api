@@ -102,6 +102,11 @@ routes.patch("/candidate/vote", async (req, res) => {
     const { username, candidateName } = req.body;
     const userData = await userModel.findOne({ username: username });
     if (userData === null) return res.status(400).send(`user not found!`);
+    const candidateExist = await candidateModel.findOne({
+      candidateName: candidateName,
+    });
+    if (candidateExist === null)
+      return res.status(400).send(`candidate not found!`);
     if (userData.hasVote !== "") return res.send(`user ${username} has voted`);
     userData.hasVote = candidateName;
     let result = await userModel.findOneAndUpdate(
