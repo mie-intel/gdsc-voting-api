@@ -301,7 +301,7 @@ This feature will reset all votes. Every `voteCount` variabel will be set into `
 ```
     {
         method: PATCH
-        endpoint: /candidate/resetAll
+        endpoint: /resetAllVote
     }
 ```
 
@@ -312,7 +312,7 @@ This feature will delete all users and candidates account. It has the following 
 ```
     {
         method: DELETE
-        endpoint: /candidate/deleteAll
+        endpoint: /deleteAll
     }
 ```
 
